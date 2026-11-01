@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop App</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome icons үшін -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- 1. ONBOARDING SCREEN -->
+        <div id="screen-onboarding" class="screen active">
+            <div class="onboard-content">
+                <div class="onboard-img-container">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Coffee">
+                </div>
+                <div class="onboard-text">
+                    <h1>Fall in Love with Coffee in Blissful Delight!</h1>
+                    <p>Welcome to our cozy coffee corner, where every cup is a delightful for you.</p>
+                    <button id="btn-get-started" class="btn-primary">Get Started</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. HOME SCREEN -->
+        <div id="screen-home" class="screen">
+            <div class="header">
+                <div class="location-box">
+                    <span>Location</span>
+                    <h3>Bilzen, Tanjungbalai <i class="fa-solid fa-angle-down"></i></h3>
+                </div>
+            </div>
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search coffee">
+                <button class="filter-btn"><i class="fa-solid fa-sliders"></i></button>
+            </div>
+            
+            <div class="promo-banner">
+                <span class="promo-tag">Promo</span>
+                <h2>Buy one get<br>one FREE</h2>
+            </div>
+
+            <div class="categories">
+                <button class="cat-btn active">All Coffee</button>
+                <button class="cat-btn">Machiato</button>
+                <button class="cat-btn">Latte</button>
+                <button class="cat-btn">Americano</button>
+            </div>
+
+            <div class="coffee-grid">
+                <div class="coffee-card" onclick="goToDetail()">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=300&q=80" alt="Caffe Mocha">
+                        <span class="rating"><i class="fa-solid fa-star"></i> 4.8</span>
+                    </div>
+                    <h4>Caffe Mocha</h4>
+                    <p class="sub-text">Deep Foam</p>
+                    <div class="card-footer">
+                        <span class="price">$ <span>4.53</span></span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+                <div class="coffee-card">
+                    <div class="card-img">
+                        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=300&q=80" alt="Flat White">
+                        <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
+                    </div>
+                    <h4>Flat White</h4>
+                    <p class="sub-text">Espresso</p>
+                    <div class="card-footer">
+                        <span class="price">$ <span>3.53</span></span>
+                        <button class="add-btn">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="bottom-nav">
+                <i class="fa-solid fa-house active"></i>
+                <i class="fa-solid fa-heart" onclick="goToOrder()"></i>
+                <i class="fa-solid fa-bag-shopping" onclick="goToOrder()"></i>
+                <i class="fa-solid fa-bell"></i>
+            </div>
+        </div>
+
+        <!-- 3. DETAIL ITEM SCREEN -->
+        <div id="screen-detail" class="screen">
+            <div class="detail-header">
+                <i class="fa-solid fa-angle-left" onclick="goToHome()"></i>
+                <h3>Detail</h3>
+                <i class="fa-regular fa-heart"></i>
+            </div>
+            <div class="detail-img">
+                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=500&q=80" alt="Caffe Mocha">
+            </div>
+            <div class="detail-info">
+                <h2>Caffe Mocha</h2>
+                <p class="sub-text">Ice/Hot</p>
+                <div class="rating-review">
+                    <i class="fa-solid fa-star"></i> <strong>4.8</strong> <span>(230)</span>
+                </div>
+                <hr class="divider">
+                <h3>Description</h3>
+                <p class="desc-text">A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml of espresso coffee and 85ml of fresh milk the fo... <span class="read-more">Read More</span></p>
+                
+                <h3>Size</h3>
+                <div class="size-options">
+                    <button class="size-btn">S</button>
+                    <button class="size-btn active">M</button>
+                    <button class="size-btn">L</button>
+                </div>
+            </div>
+            <div class="detail-footer">
+                <div class="price-box">
+                    <span>Price</span>
+                    <h3>$ 4.53</h3>
+                </div>
+                <button class="btn-primary" onclick="goToOrder()">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- 4. ORDER SCREEN -->
+        <div id="screen-order" class="screen">
+            <div class="detail-header">
+                <i class="fa-solid fa-angle-left" onclick="goToHome()"></i>
+                <h3>Order</h3>
+                <div></div>
+            </div>
+            
+            <div class="order-toggle">
+                <button class="toggle-btn active">Deliver</button>
+                <button class="toggle-btn">Pick Up</button>
+            </div>
+
+            <div class="address-section">
+                <h4>Delivery Address</h4>
+                <h5>Jl. Kpg Sutoyo</h5>
+                <p>Kpg. Sutoyo No. 620, Bilzen, Tanjungbalai.</p>
+                <div class="address-actions">
+                    <button><i class="fa-solid fa-pen-to-square"></i> Edit Address</button>
+                    <button><i class="fa-solid fa-note-sticky"></i> Add Note</button>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="order-item-card">
+                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=100&q=80" alt="Coffee">
+                <div class="order-item-info">
+                    <h4>Caffe Mocha</h4>
+                    <p>Deep Foam</p>
+                </div>
+                <div class="counter">
+                    <button>-</button>
+                    <span>1</span>
+                    <button>+</button>
+                </div>
+            </div>
+
+            <div class="discount-box">
+                <i class="fa-solid fa-ticket"></i>
+                <span>1 Discount is Applies</span>
+                <i class="fa-solid fa-angle-right"></i>
+            </div>
+
+            <div class="payment-summary">
+                <h4>Payment Summary</h4>
+                <div class="pay-row">
+                    <span>Price</span>
+                    <span>$ 4.53</span>
+                </div>
+                <div class="pay-row">
+                    <span>Delivery Fee</span>
+                    <span><del>$ 2.0</del> $ 1.0</span>
+                </div>
+            </div>
+
+            <div class="order-footer">
+                <div class="wallet-info">
+                    <i class="fa-solid fa-wallet"></i>
+                    <div>
+                        <span>Cash/Wallet</span>
+                        <strong>$ 5.53</strong>
+                    </div>
+                    <i class="fa-solid fa-angle-down"></i>
+                </div>
+                <button class="btn-primary" onclick="goToDelivery()">Order</button>
+            </div>
+        </div>
+
+        <!-- 5. DELIVERY SCREEN -->
+        <div id="screen-delivery" class="screen">
+            <div class="map-bg">
+                <!-- Карта фоны ретінде -->
+                <div class="top-nav-map">
+                    <button class="icon-circle" onclick="goToHome()"><i class="fa-solid fa-angle-left"></i></button>
+                    <button class="icon-circle"><i class="fa-solid fa-location-crosshairs"></i></button>
+                </div>
+            </div>
+            
+            <div class="delivery-sheet">
+                <div class="drag-handle"></div>
+                <h2>10 minutes left</h2>
+                <p class="delivery-sub">Delivery to <strong>Jl. Kpg Sutoyo</strong></p>
+                
+                <div class="progress-bars">
+                    <div class="p-bar active"></div>
+                    <div class="p-bar active"></div>
+                    <div class="p-bar active"></div>
+                    <div class="p-bar"></div>
+                </div>
+
+                <div class="delivery-status-card">
+                    <div class="bike-icon"><i class="fa-solid fa-motorcycle"></i></div>
+                    <div>
+                        <h4>Delivered your order</h4>
+                        <p>We will deliver your goods to you in the shortes possible time.</p>
+                    </div>
+                </div>
+
+                <div class="courier-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Courier">
+                    <div>
+                        <h4>Brooklyn Simmons</h4>
+                        <p>Personal Courier</p>
+                    </div>
+                    <button class="phone-btn"><i class="fa-solid fa-phone"></i></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

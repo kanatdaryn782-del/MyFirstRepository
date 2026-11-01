@@ -1,0 +1,711 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 390px;
+    height: 844px;
+    background-color: #f9f9f9;
+    position: relative;
+    overflow: hidden;
+    border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9;
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Ортақ батырмалар мен элементтер */
+.btn-primary {
+    background-color: #C67C4E;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.sub-text {
+    color: #9b9b9b;
+    font-size: 13px;
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background-color: #eaeaea;
+    margin: 15px 0;
+}
+
+/* 1. Onboarding Screen Styles */
+#screen-onboarding {
+    background-color: #050505;
+    padding: 0;
+    justify-content: flex-end;
+}
+
+.onboard-img-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+}
+
+.onboard-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.onboard-text {
+    background: linear-gradient(to top, #050505 80%, transparent);
+    padding: 40px 24px;
+    text-align: center;
+    z-index: 2;
+}
+
+.onboard-text h1 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.onboard-text p {
+    color: #a2a2a2;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* 2. Home Screen Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.location-box span {
+    font-size: 12px;
+    color: #9b9b9b;
+}
+
+.location-box h3 {
+    font-size: 14px;
+    color: #2f2f2f;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #2a2a2a;
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+}
+
+.search-bar i {
+    color: #fff;
+    margin-right: 10px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    font-size: 14px;
+    width: 100%;
+}
+
+.search-bar input::placeholder {
+    color: #808080;
+}
+
+.filter-btn {
+    background-color: #C67C4E;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.promo-banner {
+    background: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=500&q=80') center/cover;
+    border-radius: 16px;
+    padding: 20px;
+    height: 140px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.promo-tag {
+    background-color: #ed5151;
+    color: white;
+    padding: 3px 8px;
+    font-size: 11px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.promo-banner h2 {
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.categories {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+.cat-btn {
+    background: #f1f1f1;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    color: #313131;
+}
+
+.cat-btn.active {
+    background-color: #C67C4E;
+    color: white;
+}
+
+.coffee-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding-bottom: 80px;
+}
+
+.coffee-card {
+    background: white;
+    padding: 10px;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.card-img {
+    position: relative;
+    height: 120px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rating {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 8px;
+}
+
+.coffee-card h4 {
+    font-size: 14px;
+    margin-top: 8px;
+    color: #2f2f2f;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 15px;
+    color: #2f2f2f;
+}
+
+.add-btn {
+    background-color: #C67C4E;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+}
+
+.bottom-nav i {
+    font-size: 20px;
+    color: #adadad;
+    cursor: pointer;
+}
+
+.bottom-nav i.active {
+    color: #C67C4E;
+}
+
+/* 3. Detail Screen Styles */
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.detail-header i {
+    font-size: 18px;
+    cursor: pointer;
+    color: #2f2f2f;
+}
+
+.detail-img {
+    height: 220px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.detail-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.detail-info h2 {
+    font-size: 20px;
+    color: #2f2f2f;
+}
+
+.rating-review {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.rating-review i {
+    color: #ffc107;
+}
+
+.desc-text {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.read-more {
+    color: #C67C4E;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.size-options {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.size-btn {
+    flex: 1;
+    padding: 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #313131;
+}
+
+.size-btn.active {
+    border-color: #C67C4E;
+    background: #fff5ed;
+    color: #C67C4E;
+}
+
+.detail-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+.price-box span {
+    font-size: 12px;
+    color: #9b9b9b;
+}
+
+.price-box h3 {
+    color: #C67C4E;
+    font-size: 20px;
+}
+
+.detail-footer .btn-primary {
+    width: 60%;
+}
+
+/* 4. Order Screen Styles */
+.order-toggle {
+    display: flex;
+    background: #eee;
+    padding: 4px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #666;
+}
+
+.toggle-btn.active {
+    background: #C67C4E;
+    color: white;
+}
+
+.address-section {
+    background: white;
+    padding: 15px;
+    border-radius: 14px;
+}
+
+.address-section h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.address-section h5 {
+    font-size: 13px;
+    color: #313131;
+}
+
+.address-section p {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.address-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.address-actions button {
+    background: transparent;
+    border: 1px solid #ddd;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    cursor: pointer;
+    color: #313131;
+}
+
+.order-item-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 14px;
+    gap: 12px;
+}
+
+.order-item-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.order-item-info {
+    flex: 1;
+}
+
+.order-item-info h4 {
+    font-size: 14px;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.counter button {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+}
+
+.discount-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 12px 15px;
+    border-radius: 14px;
+    gap: 10px;
+    margin-top: 15px;
+    font-size: 13px;
+    border: 1px solid #eee;
+}
+
+.discount-box i:first-child {
+    color: #C67C4E;
+}
+
+.discount-box i:last-child {
+    margin-left: auto;
+    color: #777;
+}
+
+.payment-summary {
+    background: white;
+    padding: 15px;
+    border-radius: 14px;
+    margin-top: 15px;
+}
+
+.payment-summary h4 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.pay-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.order-footer {
+    margin-top: auto;
+    background: white;
+    padding: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.wallet-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+
+.wallet-info i:first-child {
+    color: #C67C4E;
+    font-size: 18px;
+}
+
+.wallet-info i:last-child {
+    margin-left: auto;
+    color: #777;
+}
+
+/* 5. Delivery Screen Styles */
+#screen-delivery {
+    padding: 0;
+}
+
+.map-bg {
+    height: 60%;
+    background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=600&q=80') center/cover;
+    position: relative;
+    padding: 20px;
+}
+
+.top-nav-map {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.delivery-sheet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45%;
+    background: white;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 -10px 20px rgba(0,0,0,0.05);
+}
+
+.drag-handle {
+    width: 40px;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    margin: 0 auto 15px auto;
+}
+
+.delivery-sheet h2 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.delivery-sub {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.progress-bars {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+}
+
+.p-bar {
+    flex: 1;
+    height: 4px;
+    background: #eee;
+    border-radius: 2px;
+}
+
+.p-bar.active {
+    background: #4CAF50;
+}
+
+.delivery-status-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #eee;
+    padding: 12px;
+    border-radius: 14px;
+    margin-bottom: 15px;
+}
+
+.bike-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid #C67C4E;
+    color: #C67C4E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.delivery-status-card h4 {
+    font-size: 13px;
+}
+
+.delivery-status-card p {
+    font-size: 11px;
+    color: #777;
+}
+
+.courier-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.courier-card img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: center;
+}
+
+.courier-card h4 {
+    font-size: 14px;
+}
+
+.courier-card p {
+    font-size: 11px;
+    color: #777;
+}
+
+.phone-btn {
+    margin-left: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: white;
+    color: #555;
+    cursor: pointer;
+}
